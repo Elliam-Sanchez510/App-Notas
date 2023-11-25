@@ -153,7 +153,7 @@ const styles = StyleSheet.create({
         height: 80,
     },
     botonAgregar: {
-        backgroundColor: "#4CAF50",
+        backgroundColor: "#2196f3",
         borderRadius: 5,
         padding: 10,
         marginTop: 10,
@@ -161,6 +161,7 @@ const styles = StyleSheet.create({
     textoBoton: {
         fontSize: 16,
         color: "#fff",
+        textAlign: "center",
     },
 });
 

@@ -1,6 +1,7 @@
 import React from "react";
 import { StyleSheet, FlatList, Text, TouchableOpacity, View } from "react-native";
 import { Note } from "./types";
+import { AntDesign, FontAwesome } from "@expo/vector-icons";
 
 interface NotaListProps {
     notas: Note[];
@@ -19,16 +20,16 @@ const NotaList: React.FC<NotaListProps> = ({ notas, onEdit, onDelete }) => {
                     <Text style={styles.contenidoNota}>{item.contenido}</Text>
                     <View style={styles.botones}>
                         <TouchableOpacity
-                            style={[styles.boton, { backgroundColor: "#007AFF" }]}
+                            style={styles.boton}
                             onPress={() => onEdit(item)}
                         >
-                            <Text style={styles.textoBoton}>Editar</Text>
+                            <FontAwesome name="edit" size={28} color="#2196f3" />
                         </TouchableOpacity>
                         <TouchableOpacity
-                            style={[styles.boton, { backgroundColor: "#FF0000" }]}
+                            style={styles.boton}
                             onPress={() => onDelete(item)}
                         >
-                            <Text style={styles.textoBoton}>Eliminar</Text>
+                            <AntDesign name="delete" size={28} color="#FF0000" />
                         </TouchableOpacity>
                     </View>
                 </View>

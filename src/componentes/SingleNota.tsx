@@ -14,12 +14,14 @@ const SingleNote: React.FC<SingleNoteProps> = ({ nota, onEdit, onDelete }) => {
             <Text style={styles.tituloNota}>{nota.titulo}</Text>
             <Text style={styles.contenidoNota}>{nota.contenido}</Text>
             <View style={styles.botones}>
+
                 <TouchableOpacity
                     style={[styles.boton, { backgroundColor: "#007AFF" }]}
                     onPress={onEdit}
                 >
                     <Text style={styles.textoBoton}>Editar</Text>
                 </TouchableOpacity>
+
                 <TouchableOpacity
                     style={[styles.boton, { backgroundColor: "#FF0000" }]}
                     onPress={onDelete}
