@@ -4,14 +4,16 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import NotaList from "./NotaList";
 import EditModal from "./EditModal";
 import { Note } from "./types";
+import DeleteModal from "./DeleteModal";
 
 const Notas: React.FC = () => {
     const [notas, setNotas] = useState<Note[]>([]);
     const [modalVisible, setModalVisible] = useState(false);
+    const [deleteModalVisible, setDeleteModalVisible] = useState(false);
     const [notaEditando, setNotaEditando] = useState<Note | null>(null);
     const [tituloEditando, setTituloEditando] = useState("");
     const [contenidoEditando, setContenidoEditando] = useState("");
-    const [nuevaNota, setNuevaNota] = useState<Note>({ titulo: "", contenido: "" });  // Definición de nuevaNota
+    const [nuevaNota, setNuevaNota] = useState<Note>({ titulo: "", contenido: "" });
 
     const cargarNotas = async () => {
         try {
@@ -77,9 +79,19 @@ const Notas: React.FC = () => {
     };
 
     const eliminarNota = (nota: Note) => {
-        const nuevasNotas = notas.filter((n) => n !== nota);
+        setNotaEditando(nota);
+        setDeleteModalVisible(true);
+    };
+
+    const confirmarEliminar = () => {
+        const nuevasNotas = notas.filter((n) => n !== notaEditando);
         setNotas(nuevasNotas);
         guardarNotas(nuevasNotas);
+        setDeleteModalVisible(false);
+    };
+
+    const cancelarEliminar = () => {
+        setDeleteModalVisible(false);
     };
 
     return (
@@ -120,6 +132,11 @@ const Notas: React.FC = () => {
                 onCancel={cerrarModalEdicion}
                 onTitleChange={setTituloEditando}
                 onContentChange={setContenidoEditando}
+            />
+            <DeleteModal
+                visible={deleteModalVisible}
+                onConfirm={confirmarEliminar}
+                onCancel={cancelarEliminar}
             />
         </View>
     );

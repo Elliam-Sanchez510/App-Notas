@@ -5,7 +5,7 @@ import { Note } from "./types";
 interface SingleNoteProps {
     nota: Note;
     onEdit: () => void;
-    onDelete: () => void;
+    onDelete: (nota: Note) => void;
 }
 
 const SingleNote: React.FC<SingleNoteProps> = ({ nota, onEdit, onDelete }) => {
@@ -24,7 +24,7 @@ const SingleNote: React.FC<SingleNoteProps> = ({ nota, onEdit, onDelete }) => {
 
                 <TouchableOpacity
                     style={[styles.boton, { backgroundColor: "#FF0000" }]}
-                    onPress={onDelete}
+                    onPress={() => onDelete(nota)}
                 >
                     <Text style={styles.textoBoton}>Eliminar</Text>
                 </TouchableOpacity>
